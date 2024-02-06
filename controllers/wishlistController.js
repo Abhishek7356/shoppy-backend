@@ -32,7 +32,7 @@ exports.getWishlistItems = async (req, res) => {
 //delete wishlistItem items
 exports.deleteWishlistItem = async (req, res) => {
     try {
-        const deleteItem = await Wishlist.findByIdAndDelete(req.params.id);
+        const deleteItem = await Wishlist.findOneAndDelete({ product: req.params.id });
         res.status(200).json("Item deleted successfully")
     } catch (err) {
         res.status(500).json(err)
