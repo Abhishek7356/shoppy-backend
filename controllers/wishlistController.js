@@ -3,13 +3,13 @@ const Wishlist = require('../database/models/wishlistSchema')
 
 //add wishlist item
 exports.addWishlistItem = async (req, res) => {
-    const { _id, ...others } = req.body;
+    const { _id } = req.body;
     try {
-        const exist = await Wishlist.findOne({ productId: _id })
+        const exist = await Wishlist.findOne({ product: _id })
         if (exist) {
             res.status(501).json("This product is all ready exist in your wishlist")
         } else {
-            const wishlist = new Wishlist({ ...others, productId: _id })
+            const wishlist = new Wishlist({ product: _id })
             await wishlist.save()
             res.status(200).json(wishlist)
         }
@@ -22,7 +22,7 @@ exports.addWishlistItem = async (req, res) => {
 //get all wishlist items
 exports.getWishlistItems = async (req, res) => {
     try {
-        const wishlistItem = await Wishlist.find();
+        const wishlistItem = await Wishlist.find().populate('product');
         res.status(200).json(wishlistItem)
     } catch (err) {
         res.status(500).json(err)
