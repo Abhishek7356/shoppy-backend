@@ -2,7 +2,7 @@
 const express = require('express');
 require('dotenv').config();
 const cors = require('cors');
-require('./database/connection')
+const mongoose = require('mongoose');
 const productRoute = require('./router/product')
 const cartRoute = require('./router/cart')
 const wishlistRoute = require('./router/wishlist')
@@ -22,4 +22,11 @@ app.get('/', (req, res) => {
 const port = process.env.PORT || 4000;
 app.listen(port, () => {
     console.log("server listening on port 4000")
+    try {
+        mongoose.connect(process.env.MONGO_URL)
+            .then(() => console.log("mongodb connected successfully."))
+            .catch((err) => console.log(err))
+    } catch (err) {
+        console.log(err)
+    }
 });
