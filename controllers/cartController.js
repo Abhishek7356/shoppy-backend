@@ -13,7 +13,7 @@ exports.addCartItem = async (req, res) => {
             res.status(200).json(cart)
         }
     } catch (err) {
-        res.status(500).json(err)
+        res.status(500).json({ message: err })
     }
 }
 

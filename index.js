@@ -14,6 +14,7 @@ app.use('/api/product', productRoute)
 app.use('/api', cartRoute)
 app.use('/api', wishlistRoute)
 
+//return rejectWithValue('No user found');
 
 app.get('/', (req, res) => {
     res.send("working")
