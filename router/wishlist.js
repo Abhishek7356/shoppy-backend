@@ -3,12 +3,12 @@ const { addWishlistItem, getWishlistItems, deleteWishlistItem } = require("../co
 const router = require("express").Router();
 
 //add wishlist item route
-router.post('/add/wishlist/item', addWishlistItem);
+router.post('/add/item', addWishlistItem);
 
 //get all wishlist item route
-router.get('/get/wishlist/item', getWishlistItems);
+router.get('/get/item', getWishlistItems);
 
 //delete wishlist item route
-router.delete('/delete/wishlist/item/:id', deleteWishlistItem);
+router.delete('/delete/item/:id', deleteWishlistItem);
 
 module.exports = router;

@@ -11,8 +11,8 @@ const app = express();
 app.use(express.json())
 app.use(cors());
 app.use('/api/product', productRoute)
-app.use('/api', cartRoute)
-app.use('/api', wishlistRoute)
+app.use('/api/cart', cartRoute)
+app.use('/api/wishlist', wishlistRoute)
 
 //return rejectWithValue('No user found');
 

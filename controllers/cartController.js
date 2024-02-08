@@ -6,17 +6,17 @@ exports.addCartItem = async (req, res) => {
     try {
         const exist = await Cart.findOne({ product: _id })
         if (exist) {
-            res.status(501).json("This product is all ready exist in your cart")
+            res.status(203).json("This product is all ready exist in your cart")
         } else {
             const cart = new Cart({ product: _id })
             await cart.save()
-            res.status(200).json(cart)
+            const allCartItems = await Cart.find().populate('product')
+            res.status(200).json(allCartItems)
         }
     } catch (err) {
         res.status(500).json({ message: err })
     }
 }
-
 
 //get all cart items
 exports.getCartItems = async (req, res) => {
@@ -34,6 +34,6 @@ exports.deleteCartItems = async (req, res) => {
         const deleteItem = await Cart.findOneAndDelete({ product: req.params.id });
         res.status(200).json("Item deleted successfully")
     } catch (err) {
-        res.status(500).json(err)
+        res.status(500).json({ message: err })
     }
 }

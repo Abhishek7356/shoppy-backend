@@ -3,12 +3,12 @@ const { addCartItem, getCartItems, deleteCartItems } = require("../controllers/c
 const router = require("express").Router();
 
 //add cart item route
-router.post('/add/cart/item', addCartItem);
+router.post('/add/item', addCartItem);
 
 //get all cart item route
-router.get('/get/cart/item', getCartItems);
+router.get('/get/item', getCartItems);
 
 //delete cart item route
-router.delete('/delete/cart/item/:id', deleteCartItems);
+router.delete('/delete/item/:id', deleteCartItems);
 
 module.exports = router;

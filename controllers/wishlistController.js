@@ -7,17 +7,17 @@ exports.addWishlistItem = async (req, res) => {
     try {
         const exist = await Wishlist.findOne({ product: _id })
         if (exist) {
-            res.status(501).json("This product is all ready exist in your wishlist")
+            res.status(203).json("This product is all ready exist in your wishlist")
         } else {
             const wishlist = new Wishlist({ product: _id })
             await wishlist.save()
-            res.status(200).json(wishlist)
+            const allWishlistItems = await Wishlist.find().populate('product');
+            res.status(200).json(allWishlistItems)
         }
     } catch (err) {
-        res.status(500).json(err)
+        res.status(500).json({ message: err })
     }
 }
-
 
 //get all wishlist items
 exports.getWishlistItems = async (req, res) => {
